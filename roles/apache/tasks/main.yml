@@ -1,0 +1,73 @@
+---
+- name: Add Key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
+    state: present
+
+- name: Add Repo
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/ondrej/apache2/ubuntu bionic main
+    state: present
+
+- name: Install Packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - apache2
+
+- name: Enable Config
+  file:
+    src: '/etc/apache2/conf-available/{{ item }}'
+    dest: '/etc/apache2/conf-enabled/{{ item }}'
+    state: link
+    mode: '0644'
+    owner: root
+    group: root
+  loop:
+    - php7.4-fpm.conf
+  notify:
+    - Reload Apache
+
+- name: Disable Mods
+  apache2_module:
+    name: '{{ item }}'
+    ignore_configcheck: yes
+    state: absent
+  loop:
+    - status
+    - php7.4
+    - mpm_prefork
+    - mpm_worker
+
+- name: Enable Mods
+  apache2_module:
+    name: '{{ item }}'
+    ignore_configcheck: yes
+    state: present
+  loop:
+    - mpm_event
+    - expires
+    - headers
+    - rewrite
+    - ssl
+    - proxy_fcgi
+    - http2
+
+- name: Disable Default Configuration
+  file:
+    dest: '{{ item }}'
+    state: absent
+  loop:
+    - /etc/apache2/sites-enabled/000-default.conf
+    - /etc/apache2/sites-enabled/default-ssl.conf
+  notify:
+    - Reload Apache
+
+- name: Remove Default HTML
+  file:
+    dest: /var/www/html
+    state: absent

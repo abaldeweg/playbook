@@ -1,0 +1,19 @@
+---
+- name: Add Key
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: Add Repo
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_12.x bionic main
+    state: present
+
+- name: Install Packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - nodejs

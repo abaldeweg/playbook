@@ -1,0 +1,8 @@
+---
+- name: Create Cron Job
+  template:
+    src: 'reboot'
+    dest: '/etc/cron.d/reboot'
+    mode: '0644'
+    owner: root
+    group: root

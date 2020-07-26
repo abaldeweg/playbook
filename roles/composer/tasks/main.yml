@@ -1,0 +1,13 @@
+---
+- name: Install Composer
+  script: scripts/setup
+  args:
+    creates: /opt/setup-composer
+
+- name: Create Cron Job
+  template:
+    src: 'update'
+    dest: '/etc/cron.d/update-composer'
+    mode: '0644'
+    owner: root
+    group: root

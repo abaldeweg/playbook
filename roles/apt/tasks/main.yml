@@ -1,0 +1,20 @@
+---
+- name: Install Packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - imagemagick
+      - python3-openssl
+      - python3-pymysql
+      - sudo
+      - curl
+      - apt-transport-https
+      - dirmngr
+      - unzip
+      - wget
+      - rsync
+      - nano
+      - git

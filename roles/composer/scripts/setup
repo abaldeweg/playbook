@@ -1,0 +1,4 @@
+#!/bin/bash
+
+wget -O setup-composer https://getcomposer.org/installer
+php setup-composer --quiet --install-dir=/usr/bin/ --filename=composer

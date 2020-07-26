@@ -1,0 +1,25 @@
+---
+- name: Create .my.cnf
+  template:
+    src: .my.cnf
+    dest: '/root/.my.cnf'
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Install Packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - default-mysql-server
+
+- name: Create User
+  mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: '{{ db_user }}'
+    password: '{{ db_password }}'
+    priv: '*.*:ALL'
+    state: present

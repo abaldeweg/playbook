@@ -1,0 +1,53 @@
+---
+- name: Add Key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C
+    state: present
+
+- name: Add Repo
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main
+    state: present
+
+- name: Install Packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: true
+  vars:
+    packages:
+      - php7.4
+      - php7.4-cli
+      - php7.4-common
+      - php7.4-opcache
+      - php7.4-readline
+      - php7.4-mysql
+      - php7.4-curl
+      - php7.4-xml
+      - php7.4-fpm
+      - php7.4-mbstring
+      - php7.4-zip
+      - php7.4-intl
+      - php7.4-bcmath
+      - php7.4-json
+      - php7.4-gd
+      - php7.4-tidy
+      - php-imagick
+
+- name: Create override.ini
+  template:
+    src: override.ini
+    dest: '/etc/php/7.4/mods-available/override.ini'
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: Symlink 30-override.ini
+  file:
+    src: '/etc/php/7.4/mods-available/override.ini'
+    dest: '/etc/php/7.4/fpm/conf.d/30-override.ini'
+    state: link
+    mode: '0644'
+    owner: root
+    group: root
