@@ -1,6 +1,6 @@
-# andre_baldeweg.playbook
+# abaldeweg.playbook
 
-Installs some basic roles for machines that run php or node apps.
+Installs some basic roles for machines that run php and js apps.
 
 ## Requirements
 
@@ -8,5 +8,10 @@ Installs some basic roles for machines that run php or node apps.
 
 ## Roles
 
-- yarn
+- apt
+- php
+- certbot
+- apache
+- mysql
+- composer
 - reboot
