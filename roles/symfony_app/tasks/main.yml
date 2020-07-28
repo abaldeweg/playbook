@@ -54,7 +54,7 @@
 - name: Create Site Config
   template:
     src: '{{ item }}'
-    dest: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-available/{{ project_name }}_{{ app_name }}_{{ item }}'
     mode: '0644'
     owner: root
     group: root
@@ -64,8 +64,8 @@
 
 - name: Enable Site Config
   file:
-    src: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
-    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ item }}'
+    src: '/etc/apache2/sites-available/{{ project_name }}_{{ app_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ app_name }}_{{ item }}'
     state: link
     mode: '0644'
     owner: root
@@ -77,8 +77,8 @@
 
 - name: Enable Site Config
   file:
-    src: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
-    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ item }}'
+    src: '/etc/apache2/sites-available/{{ project_name }}_{{ app_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ app_name }}_{{ item }}'
     state: link
     mode: '0644'
     owner: root
