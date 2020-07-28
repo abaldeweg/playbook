@@ -89,13 +89,10 @@
   notify:
     - Reload Apache
 
-- name: Create setup
-  template:
-    src: 'setup'
-    dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
-    mode: '0755'
-    owner: root
-    group: root
+- name: Setup
+  script: scripts/setup
+  args:
+    creates: /var/www/{{ domain }}/vendor/
 
 - name: Create update
   template:
