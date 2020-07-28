@@ -1,6 +1,6 @@
 # core
 
-Installs an app made with symfony.
+Prepares your machine for an app made with symfony.
 
 ## Vars
 

@@ -1,3 +1,3 @@
 # yarn
 
-Add the yarn ppa.
+Installs yarn from the ppa.

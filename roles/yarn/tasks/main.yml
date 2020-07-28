@@ -11,9 +11,6 @@
 
 - name: Install Packages
   apt:
-    name: "{{ packages }}"
+    name: yarn
     state: present
-    update_cache: true
-  vars:
-    packages:
-      - yarn
+    update_cache: yes

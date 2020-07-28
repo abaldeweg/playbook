@@ -1,3 +1,3 @@
 # reboot
 
-Reboots the server once a week.
+Reboots the server once a week by cron job.

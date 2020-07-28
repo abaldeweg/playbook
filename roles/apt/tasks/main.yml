@@ -1,11 +1,7 @@
 ---
 - name: Install Packages
   apt:
-    name: "{{ packages }}"
-    state: present
-    update_cache: true
-  vars:
-    packages:
+    pkg:
       - imagemagick
       - python3-openssl
       - python3-pymysql
@@ -18,3 +14,6 @@
       - rsync
       - nano
       - git
+    state: present
+    update_cache: yes
+

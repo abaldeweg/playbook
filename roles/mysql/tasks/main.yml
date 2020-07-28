@@ -9,12 +9,9 @@
 
 - name: Install Packages
   apt:
-    name: "{{ packages }}"
+    name: default-mysql-server
     state: present
-    update_cache: true
-  vars:
-    packages:
-      - default-mysql-server
+    update_cache: yes
 
 - name: Create User
   mysql_user:

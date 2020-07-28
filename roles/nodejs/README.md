@@ -1,3 +1,3 @@
 # nodejs
 
-Adds the NodeJS ppa to the sources.
+Installs NodeJS from the ppa.

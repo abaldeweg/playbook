@@ -12,12 +12,9 @@
 
 - name: Install Packages
   apt:
-    name: "{{ packages }}"
+    name: apache2
     state: present
-    update_cache: true
-  vars:
-    packages:
-      - apache2
+    update_cache: yes
 
 - name: Enable Config
   file:
@@ -57,7 +54,7 @@
     - proxy_fcgi
     - http2
 
-- name: Disable Default Configuration
+- name: Disable Default Sites
   file:
     dest: '{{ item }}'
     state: absent
