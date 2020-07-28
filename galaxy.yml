@@ -4,7 +4,7 @@ version: 0.1.0
 readme: README.md
 authors:
   - André Baldeweg <a@baldeweg.org>
-description: Installs some basic roles for machines that run php or node apps.
+description: Installs some basic roles for machines that PHP php and JavaScript apps.
 tags:
   - collection
 repository: https://gitlab.com/a.baldeweg/playbook
