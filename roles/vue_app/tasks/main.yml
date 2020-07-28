@@ -74,10 +74,15 @@
   args:
     creates: /opt/{{ project_name }}-{{ app_name }}/node_modules/
 
-- name: Create update
+- name: Remove Update
+  file:
+    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
+    state: absent
+
+- name: Create Update
   template:
     src: 'update'
-    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
+    dest: '/opt/{{ project_name }}-{{ app_name }}'
     mode: '0755'
     owner: root
     group: root
