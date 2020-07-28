@@ -89,6 +89,11 @@
   notify:
     - Reload Apache
 
+- name: Remove Setup
+  file:
+    dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
+    state: absent
+
 - name: Setup
   script: scripts/setup
   args:
