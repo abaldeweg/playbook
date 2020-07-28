@@ -1,0 +1,97 @@
+---
+- name: Create Web Root
+  file:
+    path: '/var/www/{{ domain }}/public/'
+    state: directory
+    mode: '0755'
+    owner: www-data
+    group: www-data
+
+- name: Checkout Repo
+  git:
+    repo: '{{ repo }}'
+    dest: '/opt/{{ project_name }}-{{ app_name }}/'
+    update: no
+
+- name: Check that fullchain.pem exists
+  stat:
+    path: '/etc/letsencrypt/live/{{ domain }}/fullchain.pem'
+  register: stat_result
+
+- name: Create Site Config
+  template:
+    src: '{{ item }}'
+    dest: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    mode: '0644'
+    owner: root
+    group: root
+  loop:
+    - 'host.conf'
+    - 'host-ssl.conf'
+
+- name: Enable Site Config
+  file:
+    src: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ item }}'
+    state: link
+    mode: '0644'
+    owner: root
+    group: root
+  loop:
+    - 'host.conf'
+  notify:
+    - Reload Apache
+
+- name: Enable Site Config
+  file:
+    src: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ item }}'
+    state: link
+    mode: '0644'
+    owner: root
+    group: root
+  when: stat_result.stat.exists
+  loop:
+    - 'host-ssl.conf'
+  notify:
+    - Reload Apache
+
+- name: Create .env
+  template:
+    src: '.env'
+    dest: '/opt/{{ project_name }}-{{ app_name }}/'
+    mode: '0644'
+    owner: www-data
+    group: www-data
+
+- name: Create .env.production
+  template:
+    src: '.env.production'
+    dest: '/opt/{{ project_name }}-{{ app_name }}/'
+    mode: '0644'
+    owner: www-data
+    group: www-data
+
+- name: Create update
+  template:
+    src: 'update'
+    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Create setup
+  template:
+    src: 'setup'
+    dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Create Cron Job
+  template:
+    src: 'cron'
+    dest: '/etc/cron.d/{{ project_name }}-{{ app_name }}-update'
+    mode: '0644'
+    owner: root
+    group: root

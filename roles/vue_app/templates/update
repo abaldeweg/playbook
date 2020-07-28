@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd /opt/{{ project_name }}-{{ app_name }}/ && bin/update {{ stable_release }}
+
+rm -r /var/www/{{ domain }}/public/
+mkdir /var/www/{{ domain }}/public/
+cp -a /opt/{{ project_name }}-{{ app_name }}/dist/. /var/www/{{ domain }}/public/
+chown -R www-data:www-data /var/www/{{ domain }}/public/
