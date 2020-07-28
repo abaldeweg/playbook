@@ -1,0 +1,114 @@
+---
+- name: Create Web Root
+  file:
+    path: '/var/www/{{ domain }}/'
+    state: directory
+    mode: '0755'
+    owner: www-data
+    group: www-data
+
+- name: Checkout Repo
+  git:
+    repo: '{{ repo }}'
+    dest: /var/www/{{ domain }}/
+    update: no
+
+- name: Create .env.local
+  template:
+    src: .env.local
+    dest: '/var/www/{{ domain }}/.env.local'
+    mode: '0644'
+    owner: www-data
+    group: www-data
+
+- name: Create JWT Config Dir
+  file:
+    path: '/var/www/{{ domain }}/config/jwt'
+    state: directory
+    mode: '0755'
+    owner: www-data
+    group: www-data
+
+- name: Create Private Key
+  openssl_privatekey:
+    path: '/var/www/{{ domain }}/config/jwt/private.pem'
+    passphrase: '{{ jwt_passphrase }}'
+    cipher: aes256
+    size: 4096
+    owner: www-data
+    group: www-data
+
+- name: Create Public Key
+  openssl_publickey:
+    path: /var/www/{{ domain }}/config/jwt/public.pem
+    privatekey_path: /var/www/{{ domain }}/config/jwt/private.pem
+    privatekey_passphrase: '{{ jwt_passphrase }}'
+    owner: www-data
+    group: www-data
+
+- name: Check that fullchain.pem exists
+  stat:
+    path: '/etc/letsencrypt/live/{{ domain }}/fullchain.pem'
+  register: stat_result
+
+- name: Create Site Config
+  template:
+    src: '{{ item }}'
+    dest: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    mode: '0644'
+    owner: root
+    group: root
+  loop:
+    - 'host.conf'
+    - 'host-ssl.conf'
+
+- name: Enable Site Config
+  file:
+    src: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ item }}'
+    state: link
+    mode: '0644'
+    owner: root
+    group: root
+  loop:
+    - 'host.conf'
+  notify:
+    - Reload Apache
+
+- name: Enable Site Config
+  file:
+    src: '/etc/apache2/sites-available/{{ project_name }}_{{ item }}'
+    dest: '/etc/apache2/sites-enabled/{{ project_name }}_{{ item }}'
+    state: link
+    mode: '0644'
+    owner: root
+    group: root
+  when: stat_result.stat.exists
+  loop:
+    - 'host-ssl.conf'
+  notify:
+    - Reload Apache
+
+- name: Create setup
+  template:
+    src: 'setup'
+    dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Create update
+  template:
+    src: 'update'
+    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Create Cron Job
+  template:
+    src: 'cron'
+    dest: '/etc/cron.d/{{ project_name }}-{{ app_name }}-update'
+    mode: '0644'
+    owner: root
+    group: root

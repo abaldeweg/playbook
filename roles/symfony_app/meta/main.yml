@@ -1,0 +1,4 @@
+dependencies:
+  - { role: abaldeweg.playbook.apt }
+  - { role: abaldeweg.playbook.mysql }
+  - { role: abaldeweg.playbook.certbot }

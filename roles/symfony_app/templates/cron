@@ -1,0 +1,6 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m     h   dom     mon     dow     user    command
+  5     6   *       *       *       root    /opt/{{ project_name }}-{{ app_name }}-update > /dev/null 2>&1
+  0     *   *       *       *       root    /var/www/{{ domain }}/bin/console card:reopen -q
