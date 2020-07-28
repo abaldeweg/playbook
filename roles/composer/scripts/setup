@@ -2,3 +2,4 @@
 
 wget -O setup-composer https://getcomposer.org/installer
 php setup-composer --quiet --install-dir=/usr/bin/ --filename=composer
+unlink setup-composer

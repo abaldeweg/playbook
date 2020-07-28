@@ -2,7 +2,7 @@
 - name: Install Composer
   script: scripts/setup
   args:
-    creates: /opt/setup-composer
+    creates: /usr/bin/composer
 
 - name: Create Cron Job
   template:
