@@ -64,14 +64,6 @@
     owner: www-data
     group: www-data
 
-- name: Create .env.production
-  template:
-    src: '.env.production'
-    dest: '/opt/{{ project_name }}-{{ app_name }}/'
-    mode: '0644'
-    owner: www-data
-    group: www-data
-
 - name: Create update
   template:
     src: 'update'
