@@ -22,9 +22,9 @@ More about the roles in their corresponding readme.
 
 More about the vars in the corresponding readme for the role.
 
-- mysql_user
-- mysql_password
-- mysql_root_password
+- mysql
+- symfony_app
+- vue_app
 
 ## Getting Started
 
