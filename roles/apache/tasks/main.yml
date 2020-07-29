@@ -54,6 +54,7 @@
     - ssl
     - proxy_fcgi
     - http2
+    - env
 
 - name: Disable Default Sites
   file:
