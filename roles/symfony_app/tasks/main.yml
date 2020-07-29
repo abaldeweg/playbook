@@ -99,15 +99,10 @@
   args:
     creates: /var/www/{{ domain }}/vendor/
 
-- name: Remove Update
-  file:
-    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
-    state: absent
-
 - name: Create Update
   template:
     src: 'update'
-    dest: '/opt/{{ project_name }}-{{ app_name }}'
+    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
     mode: '0755'
     owner: root
     group: root
