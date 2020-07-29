@@ -36,6 +36,7 @@
     state: absent
   loop:
     - status
+    - php7.2
     - php7.4
     - mpm_prefork
     - mpm_worker
