@@ -29,6 +29,7 @@
       - php7.4-json
       - php7.4-gd
       - php7.4-tidy
+      - php-apcu
       - php-imagick
     state: present
     update_cache: yes
