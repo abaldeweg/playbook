@@ -38,12 +38,6 @@ Then, add the roles to your playbook e.g. `abaldeweg.playbook.apt` and set the v
 
 ### Deploy the Config
 
-Before running this config, update the sources and packages on the machine.
-
-```shell
-sudo apt-get update && sudo apt-get dist-upgrade
-```
-
 Run the playbook.
 
 Configure your MySQL Server with the following command.
