@@ -1,4 +1,9 @@
 ---
+- name: Upgrade Packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+
 - name: Install Packages
   apt:
     pkg:
@@ -15,6 +20,5 @@
       - nano
       - git
     state: present
-    upgrade: dist
     update_cache: yes
 
