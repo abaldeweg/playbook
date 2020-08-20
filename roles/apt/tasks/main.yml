@@ -19,6 +19,7 @@
       - rsync
       - nano
       - git
+      - make
     state: present
     update_cache: yes
 
