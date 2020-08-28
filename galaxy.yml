@@ -11,5 +11,5 @@ platforms:
       - bionic
 tags:
   - collection
-repository: https://gitlab.com/a.baldeweg/playbook
-issues: https://gitlab.com/a.baldeweg/playbook/-/issues
+repository: https://github.com/abaldeweg/playbook
+issues: https://github.com/abaldeweg/playbook/issues
