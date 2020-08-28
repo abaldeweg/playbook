@@ -6,10 +6,6 @@ authors:
   - André Baldeweg <a@baldeweg.org>
 description: Installs some basic roles for machines that PHP php and JavaScript apps.
 license:
-platforms:
-  - name: Ubuntu
-    versions:
-      - bionic
 tags:
   - collection
 repository: https://github.com/abaldeweg/playbook
