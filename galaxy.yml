@@ -4,7 +4,7 @@ version: 1.1.0
 readme: README.md
 authors:
   - André Baldeweg <a@baldeweg.org>
-description: Installs some basic roles for machines that PHP php and JavaScript apps.
+description: Installs some basic roles for machines that run php and JavaScript apps.
 license:
 tags:
   - collection
