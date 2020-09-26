@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /opt/{{ project_name }}-{{ app_name }}/ && bin/update {{ stable_release }} 1
+cd /opt/{{ project_name }}-{{ app_name }}/ && bin/setup {{ stable_release }}
 
 rm -r /var/www/{{ domain }}/public/
 mkdir /var/www/{{ domain }}/public/

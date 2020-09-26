@@ -64,20 +64,15 @@
     owner: www-data
     group: www-data
 
-- name: Remove Setup
-  file:
-    dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
-    state: absent
-
 - name: Setup
   script: scripts/setup
   args:
     creates: /opt/{{ project_name }}-{{ app_name }}/node_modules/
 
-- name: Create Update
+- name: Create Setup
   template:
-    src: 'update'
-    dest: '/opt/{{ project_name }}-{{ app_name }}-update'
+    src: 'setup'
+    dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
     mode: '0755'
     owner: root
     group: root
