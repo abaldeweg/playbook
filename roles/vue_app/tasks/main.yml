@@ -69,13 +69,18 @@
   args:
     creates: /opt/{{ project_name }}-{{ app_name }}/node_modules/
 
-- name: Create Setup
+- name: Create Setup Script
   template:
     src: 'setup'
     dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
     mode: '0755'
     owner: root
     group: root
+
+- name: Remove Update Script
+  file:
+    path: '/opt/{{ project_name }}-{{ app_name }}-update'
+    state: absent
 
 - name: Create Cron Job
   template:
