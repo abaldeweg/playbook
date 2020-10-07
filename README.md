@@ -17,6 +17,7 @@ More about the roles in their corresponding readme.
 - mysql
 - composer
 - reboot
+- git
 
 ## Vars
 

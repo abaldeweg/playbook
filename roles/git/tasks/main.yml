@@ -1,0 +1,23 @@
+---
+- name: Add Key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: E1DD270288B4E6030699E45FA1715D88E1DF1F24
+    state: present
+
+- name: Add Repo
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/git-core/ppa/ubuntu bionic main
+    state: present
+
+- name: Install Packages
+  apt:
+    name: git
+    state: latest
+    update_cache: true
+
+- name: Set Global Git Config
+  git_config:
+    name: init.defaultBranch
+    scope: global
+    value: main
