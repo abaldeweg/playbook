@@ -18,6 +18,7 @@ More about the roles in their corresponding readme.
 - composer
 - reboot
 - git
+- upgrade
 
 ## Vars
 
