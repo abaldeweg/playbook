@@ -7,7 +7,7 @@
 
 - name: Add Repo
   apt_repository:
-    repo: deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main
+    repo: deb http://ppa.launchpad.net/ondrej/php/ubuntu {{ ansible_distribution_release }} main
     state: present
 
 - name: Install Packages
