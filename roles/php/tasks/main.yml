@@ -29,6 +29,7 @@
       - php7.4-json
       - php7.4-gd
       - php7.4-tidy
+      - php7.4-gmp
       - php-apcu
       - php-imagick
     state: present
