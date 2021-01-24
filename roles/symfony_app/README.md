@@ -17,6 +17,9 @@ Prepares your machine for an app made with symfony.
 - db_host
 - db_port
 - cors_domain
+- auth
+
+When you use auth you have to create the corresponding `.htpasswd` by yourself under `/etc/apache2/`.
 
 ## Scripts
 

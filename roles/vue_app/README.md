@@ -13,6 +13,9 @@ Prepares the machine for an app made with vueJS.
 - main
 - repo
 - options
+- auth
+
+When you use auth you have to create the corresponding `.htpasswd` by yourself under `/etc/apache2/`.
 
 ## Scripts
 
