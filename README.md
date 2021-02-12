@@ -1,59 +1,17 @@
 # abaldeweg.playbook
 
-Installs some basic roles for machines that run php and JavaScript apps.
+Installs some basic roles for machines that run PHP and JavaScript apps.
 
 ## Requirements
 
-- Ubuntu 18.04
+- Ubuntu 18.04 or 20.04
 
-## Roles
+## Roles & Vars
 
-More about the roles in their corresponding readme.
-
-- apt
-- php
-- certbot
-- apache
-- mysql
-- composer
-- reboot
-- git
-- upgrade
-
-## Vars
-
-More about the vars in the corresponding readme for the role.
-
-- mysql
-- symfony_app
-- vue_app
+More about the roles and vars in their corresponding README.md.
 
 ## Getting Started
 
-Install the collection.
-
-```shell
-ansible-galaxy collection install abaldeweg.playbook
-```
+Download the latest release from https://github.com/abaldeweg/playbook and install it with `ansible-galaxy collection install [FILE]`.
 
 Then, add the roles to your playbook e.g. `abaldeweg.playbook.apt` and set the vars.
-
-### Deploy the Config
-
-Run the playbook.
-
-Configure your MySQL Server with the following command.
-
-```shell
-mysql_secure_installation
-```
-
-Now you can (re-)install your certificates. If you wanna use Let's Encrypt all you need is already installed. Just run the following command and get the certificates.
-
-```shell
-certbot certonly --apache
-```
-
-Run the playbook again, so the vHosts can be activated.
-
-Reboot your system.
