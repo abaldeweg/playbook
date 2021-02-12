@@ -2,4 +2,4 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 # m     h   dom     mon     dow     user    command
-  5     4   *       *       3       root    /sbin/shutdown -r  > /dev/null 2>&1
+  {{ reboot_minute }}     {{ reboot_hour }}   *       *       3       root    /sbin/shutdown -r  > /dev/null 2>&1
