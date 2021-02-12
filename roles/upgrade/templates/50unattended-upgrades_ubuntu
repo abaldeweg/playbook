@@ -4,7 +4,7 @@ Unattended-Upgrade::Origins-Pattern {
 Unattended-Upgrade::Package-Blacklist {};
 Unattended-Upgrade::Remove-Unused-Dependencies "true";
 Unattended-Upgrade::Automatic-Reboot "true";
-Unattended-Upgrade::Automatic-Reboot-Time "04:00";
+Unattended-Upgrade::Automatic-Reboot-Time "{{ upgrade_reboot }}";
 
 Dpkg::Options {
   "--force-confdef";
