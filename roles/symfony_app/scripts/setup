@@ -1,3 +1,0 @@
-#!/bin/bash
-
-cd /var/www/{{ domain }} && bin/setup {{ stable_release }}

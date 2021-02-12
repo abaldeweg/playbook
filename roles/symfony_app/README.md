@@ -1,4 +1,4 @@
-# core
+# symfony_app
 
 Prepares your machine for an app made with symfony.
 
