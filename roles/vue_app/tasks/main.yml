@@ -64,28 +64,10 @@
     owner: www-data
     group: www-data
 
-- name: Setup
-  script: scripts/setup
-  args:
-    creates: /opt/{{ project_name }}-{{ app_name }}/node_modules/
-
 - name: Create Setup Script
   template:
     src: 'setup'
     dest: '/opt/{{ project_name }}-{{ app_name }}-setup'
     mode: '0755'
-    owner: root
-    group: root
-
-- name: Remove Update Script
-  file:
-    path: '/opt/{{ project_name }}-{{ app_name }}-update'
-    state: absent
-
-- name: Create Cron Job
-  template:
-    src: 'cron'
-    dest: '/etc/cron.d/{{ project_name }}-{{ app_name }}-update'
-    mode: '0644'
     owner: root
     group: root

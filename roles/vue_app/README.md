@@ -1,6 +1,6 @@
 # vue_app
 
-Prepares the machine for an app made with vueJS.
+Prepares the machine for an app made with VueJS.
 
 ## Vars
 
