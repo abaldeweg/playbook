@@ -16,6 +16,14 @@
     state: present
     update_cache: yes
 
+- name: Create apache2.conf
+  template:
+    src: 'baldeweg-apache2.conf'
+    dest: '/etc/apache2/conf-available/baldeweg-apache2.conf'
+    mode: '0644'
+    owner: root
+    group: root
+
 - name: Enable Config
   file:
     src: '/etc/apache2/conf-available/{{ item }}'
@@ -26,6 +34,7 @@
     group: root
   loop:
     - php7.4-fpm.conf
+    - baldeweg-apache2.conf
   notify:
     - Reload Apache
 
