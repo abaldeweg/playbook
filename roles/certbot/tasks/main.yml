@@ -4,11 +4,13 @@
     keyserver: keyserver.ubuntu.com
     id: 7BF576066ADA65728FC7E70A8C47BE8E75BCA694
     state: present
+  when: ansible_distribution_release == "bionic"
 
 - name: Add Repo
   apt_repository:
     repo: deb http://ppa.launchpad.net/certbot/certbot/ubuntu {{ ansible_distribution_release }} main
     state: present
+  when: ansible_distribution_release == "bionic"
 
 - name: Install Packages
   apt:
