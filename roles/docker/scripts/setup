@@ -1,0 +1,14 @@
+#!/bin/bash
+
+version='1.28.5'
+
+# install compose
+sudo curl \
+-L "https://github.com/docker/compose/releases/download/${version}/docker-compose-$(uname -s)-$(uname -m)" \
+-o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# bash completion
+sudo curl \
+-L "https://raw.githubusercontent.com/docker/compose/${version}/contrib/completion/bash/docker-compose" \
+-o /etc/bash_completion.d/docker-compose
