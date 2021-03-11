@@ -18,8 +18,11 @@ Prepares your machine for an app made with symfony.
 - db_port
 - cors_domain
 - auth
+- tls (public|self)
 
 When you use auth you have to create the corresponding `.htpasswd` by yourself under `/etc/apache2/`.
+
+If you are using self-signed certs, upload them to `/etc/ssl/[DOMAIN]/fullchain.pem` and  `/etc/ssl/[DOMAIN]/privkey.pem`.
 
 ## Scripts
 

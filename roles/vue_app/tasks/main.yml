@@ -13,10 +13,17 @@
     dest: '/opt/{{ project_name }}-{{ app_name }}/'
     update: no
 
-- name: Check that fullchain.pem exists
+- name: Check that fullchain.pem exists in /etc/letsencrypt/
   stat:
     path: '/etc/letsencrypt/live/{{ domain }}/fullchain.pem'
-  register: stat_result
+  register: tls_public_stat_result
+  when: tls == "public"
+
+- name: Check that fullchain.pem exists in /etc/ssl/
+  stat:
+    path: '/etc/ssl/incwadi-ca-full.pem'
+  register: tls_self_stat_result
+  when: tls == "self"
 
 - name: Create Site Config
   template:
@@ -50,7 +57,7 @@
     mode: '0644'
     owner: root
     group: root
-  when: stat_result.stat.exists
+  when: tls_public_stat_result.stat.exists or tls_self_stat_result.stat.exists
   loop:
     - 'host-ssl.conf'
   notify:
@@ -59,7 +66,15 @@
 - name: Create .env
   template:
     src: '.env'
-    dest: '/opt/{{ project_name }}-{{ app_name }}/'
+    dest: '/opt/{{ project_name }}-{{ app_name }}/.env'
+    mode: '0644'
+    owner: www-data
+    group: www-data
+
+- name: Create .env
+  template:
+    src: '.env'
+    dest: '/opt/{{ project_name }}-{{ app_name }}/.env.local'
     mode: '0644'
     owner: www-data
     group: www-data
