@@ -10,7 +10,7 @@
     repo: deb http://ppa.launchpad.net/ondrej/php/ubuntu {{ ansible_distribution_release }} main
     state: present
 
-- name: Install Packages for PHP 7.4
+- name: Remove Packages for PHP 7.4
   apt:
     pkg:
       - php7.4
@@ -32,7 +32,7 @@
       - php7.4-gmp
       - php7.4-apcu
       - php7.4-imagick
-    state: present
+    state: absent
     update_cache: yes
 
 - name: Install Packages for PHP 8.0
@@ -53,23 +53,24 @@
       - php8.0-bcmath
       - php8.0-gd
       - php8.0-tidy
-      - php-imagick
-      - php-xdebug
+      - php8.0-gmp
+      - php8.0-apcu
+      - php8.0-imagick
     state: present
     update_cache: true
 
 - name: Create override.ini
   template:
     src: override.ini
-    dest: '/etc/php/7.4/mods-available/override.ini'
+    dest: '/etc/php/8.0/mods-available/override.ini'
     mode: '0644'
     owner: root
     group: root
 
 - name: Symlink 30-override.ini
   file:
-    src: '/etc/php/7.4/mods-available/override.ini'
-    dest: '/etc/php/7.4/fpm/conf.d/30-override.ini'
+    src: '/etc/php/8.0/mods-available/override.ini'
+    dest: '/etc/php/8.0/fpm/conf.d/30-override.ini'
     state: link
     mode: '0644'
     owner: root
