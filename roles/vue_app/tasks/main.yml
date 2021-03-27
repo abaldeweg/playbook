@@ -17,13 +17,11 @@
   stat:
     path: '/etc/letsencrypt/live/{{ domain }}/fullchain.pem'
   register: tls_public_stat_result
-  when: tls == "public"
 
 - name: Check that fullchain.pem exists in /etc/ssl/
   stat:
     path: '/etc/ssl/incwadi-ca-full.pem'
   register: tls_self_stat_result
-  when: tls == "self"
 
 - name: Create Site Config
   template:
