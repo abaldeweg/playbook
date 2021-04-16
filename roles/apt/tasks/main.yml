@@ -8,6 +8,7 @@
   apt:
     pkg:
       - imagemagick
+      - libmagickcore-6.q16-6-extra
       - python3-openssl
       - python3-pymysql
       - sudo
