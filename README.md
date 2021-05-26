@@ -1,4 +1,4 @@
-# abaldeweg.playbook
+# Playbook
 
 Installs some basic roles for machines that run PHP and JavaScript apps.
 
