@@ -9,7 +9,7 @@
 
 - name: Install Packages
   apt:
-    name: default-mysql-server
+    name: mysql-server
     state: present
     update_cache: yes
 
