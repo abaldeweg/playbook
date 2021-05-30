@@ -64,6 +64,7 @@
     - rewrite
     - ssl
     - proxy_fcgi
+    - proxy_http
     - http2
     - env
 
