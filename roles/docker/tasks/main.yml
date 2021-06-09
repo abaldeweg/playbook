@@ -10,26 +10,12 @@
     state: present
     update_cache: true
 
-- name: Add Key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
-- name: Add Repo
-  apt_repository:
-    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-    state: present
-
-- name: Install Packages
-  apt:
-    pkg:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-    state: present
-    update_cache: true
+- name: Install Docker Engine
+  script: scripts/engine
+  args:
+    creates: /usr/bin/docker
 
 - name: Install Docker Compose
-  script: scripts/setup
+  script: scripts/compose
   args:
     creates: /usr/local/bin/docker-compose
